@@ -1,15 +1,14 @@
 import csv
+import numpy as np
 from numpy import *
 import operator
-from PIL import Image
-import numpy as np
-import matplotlib.image as mpimg
 import os
+from PIL import Image
+
 def loadTrainData():
 	l=[]
 	with open('train.csv') as file:
 		lines=csv.reader(file)
-		#for line in lines:
 		for line in lines:
 			l.append(line)
 	l.remove(l[0])
@@ -56,52 +55,13 @@ def img2array(img):
 		for j in range(28):
 			im_array[i,j]=255 - im_array[i,j]
 	return im_array
-def test(img):
+def handwritingClass(img):
 	im = img2array(img)
-	l = array(im)
-	test_data = nomalizing(toInt(l))
+	test_data = nomalizing(toInt(im))
 	trainData,trainLabel=loadTrainData()
 	classifierResult = classify(test_data.flatten(), trainData, trainLabel, 5) 
-	print ("the classifier came back with: %d." % (classifierResult))
-def array2img(img,img_label,labelCount):
-	im = Image.fromarray(np.uint8(img))
-	img_path = './test/'+str(img_label)
-	img_name = str(img_label)+'_'+str(labelCount)+'.png'
-	if os.path.exists(img_path)==False:	
-		os.mkdir(img_path)
-	img_name = img_path + '/' +img_name
-	im.save(img_name)
-def loadTestData():
-	l=[]
-	with open('test.csv') as file:
-		lines=csv.reader(file)
-		for line in lines:
-			l.append(line)
-	l.remove(l[0])
-	l = array(l)
-	data = array(l)	
-	return data
-	
+	return classifierResult
 if __name__ == "__main__":
-	data = loadTestData()
-	m,n=shape(data) 
-	trainData,trainLabel=loadTrainData()
-	numberLabel={} 
-	for i in range(m):
-		im = data[i]
-		l = array(im)
-		test_data = nomalizing(toInt(l))
-		classifierResult = classify(test_data.flatten(), trainData, trainLabel, 5) 
-		classifierResult = int(classifierResult)
-		print ("the classifier came back with: %d." % (classifierResult))
-		numberLabel[classifierResult] = numberLabel.get(classifierResult,0) + 1
-		for j in range(28*28):
-			l[j] = 255 - int(l[j])
-		img = np.array(l).reshape(28,28)		
-		array2img(img,classifierResult,numberLabel[classifierResult])
-
-	
-	
-
-
-
+	img = input("please input:")
+	result = handwritingClass(img)
+	print ("the classifier came back with: %d." % (result))
