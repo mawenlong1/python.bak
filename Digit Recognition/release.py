@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+# @Author: AengusMa
+# @Date:   2017-03-24 16:03:10
+# @Last Modified by:   mwl
+# @Last Modified time: 2017-04-02 17:30:08
+#2017年03月24日 星期五 19时39分08秒
 import csv
 import numpy as np
 from numpy import *
