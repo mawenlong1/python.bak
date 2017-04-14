@@ -4,7 +4,9 @@ k近邻算法的python实现
 
 
 
-核心代码：
+1.核心代码
+
+---
 
 ```
 
@@ -42,17 +44,17 @@ def classify0(inX, dataSet, labels, k):
 
 ```
 
-###python的tile函数简单介绍(使用tile要from numpy import*)
+2.python的tile函数简单介绍(使用tile要from numpy import*)
+
+---
 
 格式：tile(A,reps)
 
-A:输入的数组<br>
+* A:输入的数组<br>
 
-reps：A沿各纬度重复的次数（tile（A,(2,2,3)）表示A沿第一纬度重复3遍，第二纬度重复2遍，第二纬度重复2遍）<br>
+* reps：A沿各纬度重复的次数（tile（A,(2,2,3)）表示A沿第一纬度重复3遍，第二纬度重复2遍，第二纬度重复2遍）<br>
 
-A的类型众多，几乎所有类型都可以：array, list, tuple, dict, matrix以及基本数据类型int, string, float以及bool类型。
-
-reps的类型也很多，可以是tuple，list, dict, array, int, bool.但不可以是float, string, matrix类型。
+* A的类型众多，几乎所有类型都可以：array, list, tuple, dict, matrix以及基本数据类型int, string, float以及bool类型。
 
 ```
 
