@@ -1,10 +1,10 @@
 k近邻算法的python实现
 
-==== 
+=== 
 
 
 
-1.核心代码
+核心代码
 
 ---
 
@@ -44,7 +44,7 @@ def classify0(inX, dataSet, labels, k):
 
 ```
 
-2.python的tile函数简单介绍(使用tile要from numpy import*)
+python的tile函数简单介绍(使用tile要from numpy import*)
 
 ---
 
