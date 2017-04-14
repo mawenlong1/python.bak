@@ -19,3 +19,28 @@ def classify0(inX, dataSet, labels, k):
     sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
     return sortedClassCount[0][0]
 ```
+###python的tile函数简单介绍(使用tile要from numpy import*)
+格式：tile(A,reps)
+A:输入的数珠
+reps：A沿各纬度重复的次数（tile（A,(2,2,3)）表示A沿第一纬度重复3遍，第二纬度重复2遍，第二纬度重复2遍）
+A的类型众多，几乎所有类型都可以：array, list, tuple, dict, matrix以及基本数据类型int, string, float以及bool类型。
+reps的类型也很多，可以是tuple，list, dict, array, int, bool.但不可以是float, string, matrix类型。
+```
+>>> A = [1,2,3]
+>>> tile(A,3)
+array([1, 2, 3, 1, 2, 3, 1, 2, 3])
+>>> tile(A,(2,3))
+array([[1, 2, 3, 1, 2, 3, 1, 2, 3],
+       [1, 2, 3, 1, 2, 3, 1, 2, 3]])
+>>> tile(A,(2,3,4))
+array([[[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+        [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+        [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]],
+
+       [[1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+        [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+        [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3]]])
+```
+
+
+
