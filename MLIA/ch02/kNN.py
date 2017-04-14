@@ -18,7 +18,8 @@ from os import listdir
 import matplotlib
 import matplotlib.pyplot as plt
 
-def classify0(inX, dataSet, labels, k):
+#分类器
+def classify0(inX, dataSet, labels, k):    
     dataSetSize = dataSet.shape[0]
     diffMat = tile(inX, (dataSetSize,1)) - dataSet
     sqDiffMat = diffMat**2
@@ -31,12 +32,12 @@ def classify0(inX, dataSet, labels, k):
         classCount[voteIlabel] = classCount.get(voteIlabel,0) + 1
     sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)
     return sortedClassCount[0][0]
-
+#创建数据集进行测试
 def createDataSet():
     group = array([[1.0,1.1],[1.0,1.0],[0,0],[0,0.1]])
     labels = ['A','A','B','B']
     return group, labels
-
+#读取相应格式的文件并转化为数组
 def file2matrix(filename):
     fr = open(filename)
     numberOfLines = len(fr.readlines())         #get the number of lines in the file
@@ -51,7 +52,7 @@ def file2matrix(filename):
         classLabelVector.append(int(listFromLine[-1]))
         index += 1
     return returnMat,classLabelVector
-    
+#将数据归一话
 def autoNorm(dataSet):
     minVals = dataSet.min(0)
     maxVals = dataSet.max(0)
@@ -61,7 +62,7 @@ def autoNorm(dataSet):
     normDataSet = dataSet - tile(minVals, (m,1))
     normDataSet = normDataSet/tile(ranges, (m,1))   #element wise divide
     return normDataSet, ranges, minVals
-   
+#数据分类测试 
 def datingClassTest():
     hoRatio = 0.50      #hold out 10%
     datingDataMat,datingLabels = file2matrix('datingTestSet2.txt')       #load data setfrom file
@@ -75,6 +76,7 @@ def datingClassTest():
         if (classifierResult != datingLabels[i]): errorCount += 1.0
     print ("the total error rate is: %f" % (errorCount/float(numTestVecs)))
     print (errorCount)
+#分类
 def classifyPerson():
     resultList = ['not at all','in small doses','in large doses'];
     percentTats = float(input(\
@@ -88,6 +90,7 @@ def classifyPerson():
                                 minVals)/ranges,normMat,datingLabels,3)
     print ("You will probably like this person :",\
             resultList[classifierResult-1])
+#图像（像素保存在文本里面）转为向量
 def img2vector(filename):
     returnVect = zeros((1,1024))
     fr = open(filename)
@@ -96,7 +99,7 @@ def img2vector(filename):
         for j in range(32):
             returnVect[0,32*i+j] = int(lineStr[j])
     return returnVect
-
+#手写数字识别
 def handwritingClassTest():
     hwLabels = []
     trainingFileList = listdir('trainingDigits')           #load the training set
@@ -121,7 +124,7 @@ def handwritingClassTest():
         if (classifierResult != classNumStr): errorCount += 1.0
     print ("\nthe total number of errors is: %d" % errorCount)
     print ("\nthe total error rate is: %f" % (errorCount/float(mTest)))
-
+#绘图
 def showPlot():
     zhfont = matplotlib.font_manager.FontProperties(fname='/usr/share/fonts/truetype/arphic/ukai.ttc')
     matrix,labels = file2matrix('datingTestSet.txt')
