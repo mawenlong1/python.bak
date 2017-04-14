@@ -1,6 +1,6 @@
 k近邻算法的python实现
 ===== 
-###核心代码
+###核心代码<br>
 
 ```
 #inX：要分类的数据信息
@@ -36,7 +36,7 @@ def classify0(inX, dataSet, labels, k):
     return sortedClassCount[0][0]
 
 ```
-###python的tile函数简单介绍(使用tile要from numpy import*)
+### python的tile函数简单介绍(使用tile要from numpy import*)<br>
 格式：tile(A,reps)
 * A:输入的数组<br>
 * reps：A沿各纬度重复的次数（tile（A,(2,2,3)）表示A沿第一纬度重复3遍，第二纬度重复2遍，第二纬度重复2遍）<br>
